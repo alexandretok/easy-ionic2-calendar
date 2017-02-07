@@ -7,8 +7,8 @@
                 </button>
             </ion-col>
             <ion-col width-50 text-center class="selectedDateLabel">
-                <h4>{{ currentDate | date:'dd/MM/yyyy' }}</h4>
-                <span class="selectedMonthLabel">{{ currentDate | date:'MMMM' }}</span>
+                <h5 class="selectedMonthLabel">{{ currentDate | date:'MMMM' }}</h5>
+                <button (click)="setToday()" ion-button small outline>Hoje</button>
             </ion-col>
             <ion-col width-25 text-right>
                 <button ion-button icon-only (click)="nextMonth()">

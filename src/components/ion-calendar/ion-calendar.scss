@@ -8,10 +8,11 @@ ion-calendar {
   }
 
   .selected {
-    background-color: #0c60ee;
+    background-color: #30d05f;
   }
 
   .selectedMonthLabel {
     text-transform: capitalize;
+    margin-bottom: 0px;
   }
 }
