@@ -1,0 +1,53 @@
+<div class="calendar-container">
+    <ion-grid>
+        <ion-row class="calendar-controls">
+            <ion-col width-25 text-left>
+                <button ion-button icon-only (click)="previousMonth()">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col width-50 text-center class="selectedDateLabel">
+                <h4>{{ currentDate | date:'dd/MM/yyyy' }}</h4>
+                <span class="selectedMonthLabel">{{ currentDate | date:'MMMM' }}</span>
+            </ion-col>
+            <ion-col width-25 text-right>
+                <button ion-button icon-only (click)="nextMonth()">
+                    <ion-icon name="arrow-forward"></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
+
+        <ion-row class="calendar-weekDays">
+            <ion-col class="calendar-sunday-label">
+                Dom
+            </ion-col>
+            <ion-col class="calendar-monday-label">
+                Seg
+            </ion-col>
+            <ion-col class="calendar-tuesday-label">
+                Ter
+            </ion-col>
+            <ion-col class="calendar-wednesday-label">
+                Qua
+            </ion-col>
+            <ion-col class="calendar-thursday-label">
+                Qui
+            </ion-col>
+            <ion-col class="calendar-friday-label">
+                Sex
+            </ion-col>
+            <ion-col class="calendar-saturday-label">
+                Sáb
+            </ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let row of rows" class="calendar-row">
+            <ion-col *ngFor="let day of row" text-center class="calendar-col" [class.selected]="day == currentDate.getDate()">
+                <button class="calendar-day" ion-button clear (click)="dateClicked(day)">
+                    {{ day }}
+                </button>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+</div>

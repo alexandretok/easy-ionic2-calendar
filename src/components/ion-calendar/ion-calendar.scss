@@ -1,0 +1,17 @@
+ion-calendar {
+  .selectedDateLabel {
+    margin: auto;
+  }
+
+  .calendar-col, .calendar-day {
+    padding: 0px;
+  }
+
+  .selected {
+    background-color: #0c60ee;
+  }
+
+  .selectedMonthLabel {
+    text-transform: capitalize;
+  }
+}
