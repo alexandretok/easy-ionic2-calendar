@@ -19,6 +19,7 @@ export class IonCalendarComponent {
     setTimeout(() => {
       /* Calls `this.calc()` after receiving an initial date */
       this.currentDate.setHours(0, 0, 0, 0);
+      this.onChange.emit(this.currentDate);
       this.calc();
     });
   }
