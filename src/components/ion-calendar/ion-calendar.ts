@@ -97,7 +97,7 @@ export class IonCalendarComponent {
       tmp.setDate(tmp.getDate() + 1);
     }
 
-    setInterval(() => {
+    setTimeout(() => {
       this.setClassesOnEventDays();
     });
   }
