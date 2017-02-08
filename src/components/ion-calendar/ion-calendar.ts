@@ -40,7 +40,11 @@ export class IonCalendarComponent {
   ngAfterViewInit(){
     /* Calls `this.calc()` after receiving an initial date */
     this.currentDate.setHours(0, 0, 0, 0);
-    this.calc();
+    this.onChange.emit(this.currentDate);
+
+    setTimeout(() => {
+      this.calc();
+    });
   }
 
   setClassesOnEventDays(){
@@ -99,6 +103,7 @@ export class IonCalendarComponent {
     }
 
     setTimeout(() => {
+      /* Needs to be executed only after the DOM has been updated */
       this.setClassesOnEventDays();
     });
   }
