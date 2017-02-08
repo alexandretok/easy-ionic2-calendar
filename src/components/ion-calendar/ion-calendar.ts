@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {Component, Input, Output, EventEmitter, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'ion-calendar',
@@ -6,25 +6,37 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class IonCalendarComponent {
 
-  @Input()
-    currentDate: Date = new Date();
+  @Input() currentDate: Date = new Date();
 
-  @Output()
-    onChange: EventEmitter<Date> = new EventEmitter<Date>();
+  @Output() onChange: EventEmitter<Date> = new EventEmitter<Date>();
 
   rows = [];
   stop = false;
 
   constructor() {
-    setTimeout(() => {
-      /* Calls `this.calc()` after receiving an initial date */
-      this.currentDate.setHours(0, 0, 0, 0);
-      this.calc();
-    });
+
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if(!changes["currentDate"].isFirstChange()) {
+      /* If the currentDate was changed outside (in the parent component), we need to call this.calc() */
+      /* But only if the month is changed */
+      if (changes["currentDate"].currentValue.getMonth() != changes["currentDate"].previousValue.getMonth())
+        this.calc();
+    }
+  }
+
+  ngAfterViewInit(){
+    /* Calls `this.calc()` after receiving an initial date */
+    this.currentDate.setHours(0, 0, 0, 0);
+    this.calc();
   }
 
   setToday(){
-    this.currentDate = new Date();
+    let tmp = new Date();
+    tmp.setHours(0,0,0,0);
+
+    this.currentDate = tmp;
     this.onChange.emit(this.currentDate);
     this.calc();
   }
@@ -36,7 +48,7 @@ export class IonCalendarComponent {
     /* Resets the rows */
     this.rows = [];
 
-    var tmp = new Date(this.currentDate.getTime()); tmp.setDate(1);
+    let tmp = new Date(this.currentDate.getTime()); tmp.setDate(1);
 
     while(tmp.getMonth() == this.currentDate.getMonth()){
       /* Pushes a new empty row */
@@ -58,7 +70,7 @@ export class IonCalendarComponent {
    * @param date number The day that was clicked
    */
   dateClicked(date){
-    var clickedDate = new Date(this.currentDate);
+    let clickedDate = new Date(this.currentDate);
     clickedDate.setDate(date);
 
     this.currentDate = clickedDate;
@@ -69,7 +81,7 @@ export class IonCalendarComponent {
    * Subtracts a month on currentDate
    */
   previousMonth(){
-    var tmp = new Date(
+    let tmp = new Date(
         this.currentDate.getFullYear(),
         this.currentDate.getMonth() - 1,
         this.currentDate.getDate()
@@ -91,7 +103,7 @@ export class IonCalendarComponent {
    * Adds a month on currentDate
    */
   nextMonth(){
-    var tmp = new Date(
+    let tmp = new Date(
         this.currentDate.getFullYear(),
         this.currentDate.getMonth() + 1,
         this.currentDate.getDate()
