@@ -1,28 +1,18 @@
 ion-calendar {
-  .selectedDateLabel {
-    margin: auto;
+  .calendar-controls ion-col[width-25] button {
+    margin-top: 20% !important;
   }
 
   .calendar-week-day {
     max-width: 15%;
   }
 
-  .calendar-col {
-    padding: 3px;
-    max-width: 14%;
-  }
-
   .calendar-day {
-    padding: 0px 5px;
-    height: 1.7em;
-
-    span {
-      min-width: 18px;
-    }
+    font-size: 1.4em;
   }
 
   .selected {
-    background-color: #30d05f;
+    background-color: #30d05f !important;
     color: white;
   }
 

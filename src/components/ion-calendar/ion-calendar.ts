@@ -13,17 +13,17 @@ export class IonCalendarComponent {
 
   rows = [];
   stop = false;
+  todayEvents = [];
 
-  constructor() {
-
-  }
+  constructor() {}
 
   ngOnChanges(changes: SimpleChanges) {
     /* If the currentDate was changed outside (in the parent component), we need to call this.calc() */
     /* But only if the month is changed */
     if(changes["currentDate"] && !changes["currentDate"].isFirstChange()) {
-      if (changes["currentDate"].currentValue.getMonth() != changes["currentDate"].previousValue.getMonth())
+      if (changes["currentDate"].currentValue.getMonth() != changes["currentDate"].previousValue.getMonth()) {
         this.calc();
+      }
     }
 
     if(changes["events"] && !changes["events"].isFirstChange()) {
@@ -33,21 +33,22 @@ export class IonCalendarComponent {
       for(let i=0; i < n; i++)
         listToRemoveClasses[0].classList.remove("hasEvents"); /* Using index zero because the object is updated after we remove an item */
 
-      this.setClassesOnEventDays();
+      this.setHasEventsClass();
+      this.showTodayEvents();
     }
   }
 
   ngAfterViewInit(){
     /* Calls `this.calc()` after receiving an initial date */
     this.currentDate.setHours(0, 0, 0, 0);
-    this.onChange.emit(this.currentDate);
+    this.calc();
 
     setTimeout(() => {
-      this.calc();
+      this.updateSelectedDate();
     });
   }
 
-  setClassesOnEventDays(){
+  setHasEventsClass(){
     let firstDayOfTheMonth = new Date(
         this.currentDate.getFullYear(),
         this.currentDate.getMonth(),
@@ -68,14 +69,39 @@ export class IonCalendarComponent {
       });
   }
 
+  setTodayClass() {
+    /* Checks if the selected month and year are the current */
+    let tmp = new Date();
+    if (tmp.getFullYear() == this.currentDate.getFullYear() && tmp.getMonth() == this.currentDate.getMonth()){
+      var element = document.getElementById("calendar-day-" + tmp.getDate());
+      if (element) {
+        element.classList.remove("button-clear", "button-clear-md");
+        element.classList.add("button-outline", "button-outline-md");
+      }
+    }
+  }
+
+  setSelectedClass() {
+    console.log("setando selected class");
+    /* Removes previous selectedDate class */
+    let listToRemoveClasses: HTMLCollection = document.getElementsByClassName("selected");
+    let n: number = listToRemoveClasses.length;
+    for(let i=0; i < n; i++)
+      listToRemoveClasses[0].classList.remove("selected"); /* Using index zero because the object is updated after we remove an item */
+
+
+    var element = document.getElementById("calendar-day-" + this.currentDate.getDate());
+    if(element)
+      element.classList.add("selected");
+  }
+
   setToday(){
     let tmp = new Date();
     tmp.setHours(0,0,0,0);
 
     let calc: boolean = tmp.getMonth() + "" + tmp.getFullYear() != this.currentDate.getMonth() + "" + this.currentDate.getFullYear();
 
-    this.currentDate = tmp;
-    this.onChange.emit(this.currentDate);
+    this.updateSelectedDate(tmp);
 
     calc && this.calc();
   }
@@ -104,21 +130,21 @@ export class IonCalendarComponent {
 
     setTimeout(() => {
       /* Needs to be executed only after the DOM has been updated */
-      this.setClassesOnEventDays();
+      this.setHasEventsClass();
+      this.setTodayClass();
     });
   }
 
   /**
    * Function fired when a date is clicked
    * (no need to call this.calc() because the user can't click a date on a different month)
-   * @param date number The day that was clicked
+   * @param day number The day that was clicked
    */
-  dateClicked(date){
+  dateClicked(day){
     let clickedDate = new Date(this.currentDate);
-    clickedDate.setDate(date);
+    clickedDate.setDate(day);
 
-    this.currentDate = clickedDate;
-    this.onChange.emit(this.currentDate);
+    this.updateSelectedDate(clickedDate);
   }
 
   /**
@@ -137,8 +163,7 @@ export class IonCalendarComponent {
       tmp.setDate(tmp.getDate() - 1);
     }
 
-    this.currentDate = tmp;
-    this.onChange.emit(this.currentDate);
+    this.updateSelectedDate(tmp);
 
     this.calc();
   }
@@ -159,9 +184,36 @@ export class IonCalendarComponent {
       tmp.setDate(tmp.getDate() - 1);
     }
 
-    this.currentDate = tmp;
-    this.onChange.emit(this.currentDate);
+    this.updateSelectedDate(tmp);
 
     this.calc();
+  }
+
+  updateSelectedDate(newDate: Date = null){
+    if(newDate) {
+      this.currentDate = newDate;
+    }
+
+    this.onChange.emit(this.currentDate);
+
+    setTimeout(() => {
+      this.showTodayEvents();
+      this.setSelectedClass();
+    });
+  }
+
+  showTodayEvents(){
+    let tmp = [];
+
+    /* Checks for events on the new selected date */
+    this.events.forEach((item) => {
+      var itemDay = new Date(item.starts);
+      itemDay.setHours(0,0,0,0);
+
+      if(itemDay.getTime() == this.currentDate.getTime())
+        tmp.push(item);
+    });
+
+    this.todayEvents = tmp;
   }
 }
