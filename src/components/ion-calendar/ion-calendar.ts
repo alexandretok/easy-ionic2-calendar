@@ -6,11 +6,10 @@ import { Component, Input, Output, EventEmitter, SimpleChanges } from '@angular/
 })
 export class IonCalendarComponent {
 
-  @Input()
-    currentDate: Date = new Date();
+  @Input() currentDate: Date = new Date();
+  @Input() events: any = [];
 
-  @Output()
-    onChange: EventEmitter<Date> = new EventEmitter<Date>();
+  @Output() onChange: EventEmitter<Date> = new EventEmitter<Date>();
 
   rows = [];
   stop = false;
@@ -20,11 +19,21 @@ export class IonCalendarComponent {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if(!changes["currentDate"].isFirstChange()) {
-      /* If the currentDate was changed outside (in the parent component), we need to call this.calc() */
-      /* But only if the month is changed */
+    /* If the currentDate was changed outside (in the parent component), we need to call this.calc() */
+    /* But only if the month is changed */
+    if(changes["currentDate"] && !changes["currentDate"].isFirstChange()) {
       if (changes["currentDate"].currentValue.getMonth() != changes["currentDate"].previousValue.getMonth())
         this.calc();
+    }
+
+    if(changes["events"] && !changes["events"].isFirstChange()) {
+      let listToRemoveClasses: HTMLCollection = document.getElementsByClassName("hasEvents");
+      let n: number = listToRemoveClasses.length;
+
+      for(let i=0; i < n; i++)
+        listToRemoveClasses[0].classList.remove("hasEvents"); /* Using index zero because the object is updated after we remove an item */
+
+      this.setClassesOnEventDays();
     }
   }
 
@@ -34,13 +43,36 @@ export class IonCalendarComponent {
     this.calc();
   }
 
+  setClassesOnEventDays(){
+    let firstDayOfTheMonth = new Date(
+        this.currentDate.getFullYear(),
+        this.currentDate.getMonth(),
+        1
+    );
+
+    let lastDayOfTheMonth = new Date(
+        this.currentDate.getFullYear(),
+        this.currentDate.getMonth() + 1,
+        0
+    );
+
+    this.events.forEach((item, index) => {
+      if(item.starts.getTime() >= firstDayOfTheMonth.getTime() && item.ends.getTime() < lastDayOfTheMonth.getTime()) {
+        document.getElementById("calendar-day-" + item.starts.getDate()).classList.add('hasEvents');
+      }
+    });
+  }
+
   setToday(){
     let tmp = new Date();
     tmp.setHours(0,0,0,0);
 
+    let calc: boolean = tmp.getMonth() + "" + tmp.getFullYear() != this.currentDate.getMonth() + "" + this.currentDate.getFullYear();
+
     this.currentDate = tmp;
     this.onChange.emit(this.currentDate);
-    this.calc();
+
+    calc && this.calc();
   }
 
   /**
@@ -64,6 +96,10 @@ export class IonCalendarComponent {
         this.rows[this.rows.length - 1][tmp.getDay()] = tmp.getDate();
       tmp.setDate(tmp.getDate() + 1);
     }
+
+    setInterval(() => {
+      this.setClassesOnEventDays();
+    });
   }
 
   /**

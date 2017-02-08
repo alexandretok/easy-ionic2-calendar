@@ -3,12 +3,31 @@ ion-calendar {
     margin: auto;
   }
 
-  .calendar-col, .calendar-day {
-    padding: 0px;
+  .calendar-week-day {
+    max-width: 15%;
+  }
+
+  .calendar-col {
+    padding: 3px;
+    max-width: 14%;
+  }
+
+  .calendar-day {
+    padding: 0px 5px;
+    height: 1.7em;
+
+    span {
+      min-width: 18px;
+    }
   }
 
   .selected {
     background-color: #30d05f;
+    color: white;
+  }
+
+  .hasEvents {
+    border-bottom: 2px solid red;
   }
 
   .selectedMonthLabel {

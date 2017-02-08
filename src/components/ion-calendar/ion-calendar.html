@@ -18,32 +18,32 @@
         </ion-row>
 
         <ion-row class="calendar-weekDays">
-            <ion-col class="calendar-sunday-label">
+            <ion-col class="calendar-week-day">
                 Dom
             </ion-col>
-            <ion-col class="calendar-monday-label">
+            <ion-col class="calendar-week-day">
                 Seg
             </ion-col>
-            <ion-col class="calendar-tuesday-label">
+            <ion-col class="calendar-week-day">
                 Ter
             </ion-col>
-            <ion-col class="calendar-wednesday-label">
+            <ion-col class="calendar-week-day">
                 Qua
             </ion-col>
-            <ion-col class="calendar-thursday-label">
+            <ion-col class="calendar-week-day">
                 Qui
             </ion-col>
-            <ion-col class="calendar-friday-label">
+            <ion-col class="calendar-week-day">
                 Sex
             </ion-col>
-            <ion-col class="calendar-saturday-label">
+            <ion-col class="calendar-week-day">
                 Sáb
             </ion-col>
         </ion-row>
 
         <ion-row *ngFor="let row of rows" class="calendar-row">
-            <ion-col *ngFor="let day of row" text-center class="calendar-col" [class.selected]="day == currentDate.getDate()">
-                <button class="calendar-day" ion-button clear (click)="dateClicked(day)">
+            <ion-col *ngFor="let day of row" text-center class="calendar-col">
+                <button class="calendar-day" [class.selected]="day == currentDate.getDate()" ion-button clear (click)="dateClicked(day)" id="calendar-day-{{day}}">
                     {{ day }}
                 </button>
             </ion-col>
