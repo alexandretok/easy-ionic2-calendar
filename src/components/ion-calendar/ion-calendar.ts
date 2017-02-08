@@ -56,11 +56,12 @@ export class IonCalendarComponent {
         0
     );
 
-    this.events.forEach((item, index) => {
-      if(item.starts.getTime() >= firstDayOfTheMonth.getTime() && item.ends.getTime() < lastDayOfTheMonth.getTime()) {
-        document.getElementById("calendar-day-" + item.starts.getDate()).classList.add('hasEvents');
-      }
-    });
+    if(this.events)
+      this.events.forEach((item, index) => {
+        if(item.starts.getTime() >= firstDayOfTheMonth.getTime() && item.ends.getTime() < lastDayOfTheMonth.getTime()) {
+          document.getElementById("calendar-day-" + item.starts.getDate()).classList.add('hasEvents');
+        }
+      });
   }
 
   setToday(){
