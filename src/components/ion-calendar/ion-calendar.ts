@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, SimpleChanges} from '@angular/core';
+import { Component, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'ion-calendar',
@@ -6,9 +6,11 @@ import {Component, Input, Output, EventEmitter, SimpleChanges} from '@angular/co
 })
 export class IonCalendarComponent {
 
-  @Input() currentDate: Date = new Date();
+  @Input()
+    currentDate: Date = new Date();
 
-  @Output() onChange: EventEmitter<Date> = new EventEmitter<Date>();
+  @Output()
+    onChange: EventEmitter<Date> = new EventEmitter<Date>();
 
   rows = [];
   stop = false;
