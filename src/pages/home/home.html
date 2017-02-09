@@ -1,11 +1,15 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            Calendar Demo
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-calendar (onChange)="onChange($event)" [events]="eventos" (onEventClicked)="evento($event)" [currentDate]="data"></ion-calendar>
+    <ion-calendar
+            (onChange)="onChange($event)"
+            [events]="eventos"
+            (onEventClicked)="evento($event)"
+            [currentDate]="data"></ion-calendar>
 </ion-content>

@@ -12,6 +12,16 @@ export class IonCalendarComponent {
   @Output() onChange: EventEmitter<Date> = new EventEmitter<Date>();
   @Output() onEventClicked: EventEmitter<any> = new EventEmitter<any>();
 
+  weekDays: string[] = [
+      'Sun',
+      'Mon',
+      'Tue',
+      'Wed',
+      'Thu',
+      'Fri',
+      'Sat'
+  ];
+
   rows = [];
   stop = false;
   todayEvents = [];

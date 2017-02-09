@@ -8,7 +8,7 @@
             </ion-col>
             <ion-col width-50 text-center class="selectedDateLabel">
                 <h5 class="selectedMonthLabel">{{ currentDate | date:'MMMM yyyy' }}</h5>
-                <button (click)="setToday()" ion-button small outline>Hoje</button>
+                <button (click)="setToday()" ion-button small outline>Today</button>
             </ion-col>
             <ion-col width-25 text-right>
                 <button ion-button icon-only (click)="nextMonth()">
@@ -19,25 +19,25 @@
 
         <ion-row class="calendar-weekDays">
             <ion-col text-center class="calendar-week-day">
-                Dom
+                {{ weekDays[0] }}
             </ion-col>
             <ion-col text-center class="calendar-week-day">
-                Seg
+                {{ weekDays[1] }}
             </ion-col>
             <ion-col text-center class="calendar-week-day">
-                Ter
+                {{ weekDays[2] }}
             </ion-col>
             <ion-col text-center class="calendar-week-day">
-                Qua
+                {{ weekDays[3] }}
             </ion-col>
             <ion-col text-center class="calendar-week-day">
-                Qui
+                {{ weekDays[4] }}
             </ion-col>
             <ion-col text-center class="calendar-week-day">
-                Sex
+                {{ weekDays[5] }}
             </ion-col>
             <ion-col text-center class="calendar-week-day">
-                Sáb
+                {{ weekDays[6] }}
             </ion-col>
         </ion-row>
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -12,20 +12,20 @@ export class HomePage {
 
   eventos: any = [
     {
-      starts: new Date(2017, 1, 2),
+      starts: new Date(2017, 1, 2, 8, 30),
       ends: new Date(2017, 1, 2, 12),
-      title: 'Título',
-      description: 'Descrição do evento'
+      title: 'Meeting with Gates',
+      description: ''
     },
     {
-      starts: new Date(2017, 2, 3),
+      starts: new Date(2017, 2, 3, 9, 45),
       ends: new Date(2017, 2, 3, 12),
-      title: 'Título',
-      description: 'Descrição do evento'
+      title: 'Lunch with Zuckerberg',
+      description: ''
     }
   ];
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
 
   }
 
@@ -35,6 +35,14 @@ export class HomePage {
 
   evento(event){
     console.log("evento clicado", event);
+    let starts = new Date(event.starts);
+    let alert = this.alertCtrl.create({
+      title: 'Event clicked!',
+      subTitle: '<br>The following event was clicked: ',
+      message: event.title + "<br>" + starts.toISOString().slice(0, 10) + "<br>Starts at: " + ("0" + starts.getHours()).slice(-2) + ":" + ("0" + starts.getMinutes()).slice(-2),
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }
