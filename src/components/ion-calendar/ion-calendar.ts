@@ -42,9 +42,9 @@ export class IonCalendarComponent {
   ngAfterViewInit(){
     /* Calls `this.calc()` after receiving an initial date */
     this.currentDate.setHours(0, 0, 0, 0);
-    this.calc();
 
     setTimeout(() => {
+      this.calc();
       this.updateSelectedDate();
     });
   }
