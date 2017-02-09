@@ -82,7 +82,6 @@ export class IonCalendarComponent {
   }
 
   setSelectedClass() {
-    console.log("setando selected class");
     /* Removes previous selectedDate class */
     let listToRemoveClasses: HTMLCollection = document.getElementsByClassName("selected");
     let n: number = listToRemoveClasses.length;
