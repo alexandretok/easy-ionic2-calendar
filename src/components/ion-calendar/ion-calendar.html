@@ -43,7 +43,7 @@
 
         <ion-row *ngFor="let row of rows" class="calendar-row">
             <ion-col *ngFor="let day of row" text-center class="calendar-col">
-                <button no-padding block class="calendar-day" ion-button clear (click)="dateClicked(day)" id="calendar-day-{{day}}">
+                <button no-padding block *ngIf="day" class="calendar-day" ion-button clear (click)="dateClicked(day)" id="calendar-day-{{day}}">
                     {{ day }}
                 </button>
             </ion-col>
