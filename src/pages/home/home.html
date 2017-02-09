@@ -7,5 +7,5 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-calendar (onChange)="onChange($event)" [events]="eventos" [currentDate]="data"></ion-calendar>
+  <ion-calendar (onChange)="onChange($event)" [events]="eventos" (onEventClicked)="evento($event)" [currentDate]="data"></ion-calendar>
 </ion-content>

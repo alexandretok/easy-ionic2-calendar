@@ -33,4 +33,8 @@ export class HomePage {
     console.log("data selecionada:", event);
   }
 
+  evento(event){
+    console.log("evento clicado", event);
+  }
+
 }

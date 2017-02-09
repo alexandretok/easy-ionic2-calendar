@@ -3,12 +3,25 @@ ion-calendar {
     margin-top: 20% !important;
   }
 
+  .calendar-row {
+    max-height: 40px;
+
+    .calendar-col {
+      padding: 0px;
+      margin: 5px;
+
+      button {
+        max-height: 32px;
+      }
+    }
+  }
+
   .calendar-week-day {
     max-width: 15%;
   }
 
   .calendar-day {
-    font-size: 1.4em;
+    font-size: 1.3em;
   }
 
   .selected {

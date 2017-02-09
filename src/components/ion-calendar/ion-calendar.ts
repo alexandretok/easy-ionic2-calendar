@@ -10,6 +10,7 @@ export class IonCalendarComponent {
   @Input() events: any = [];
 
   @Output() onChange: EventEmitter<Date> = new EventEmitter<Date>();
+  @Output() onEventClicked: EventEmitter<any> = new EventEmitter<any>();
 
   rows = [];
   stop = false;
@@ -214,5 +215,9 @@ export class IonCalendarComponent {
     });
 
     this.todayEvents = tmp;
+  }
+
+  eventClicked(event) {
+    this.onEventClicked.emit(event);
   }
 }
