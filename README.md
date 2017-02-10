@@ -1,4 +1,4 @@
-#### A Simple and fast calendar for your Ionic 2 App
+#### An easy calendar for your Ionic 2 App
 
 Demo:
 
@@ -40,18 +40,20 @@ Instalattion process:
       * starts: Date object representing the date and time that the events starts.
       * ends: Date object representing the date and time that the events ends.
       * title: String with the title to be shown in the events list.
-  * `[currentDate]="yourDateObject"`
-    * Date object you can use to set the selected date programmatically.
-      * When you want to set the selected date programmatically, remember to always create a new reference for this variable.
-      
+  * `[useSwipe]="false"`
+    * You can use this to prevent swiping through through the months
+  * `[todayText]="Today"`
+    * You can use this to translate the today's button content to other languages
+  * `[inputDate]="yourDateObject"`
+    * Date object you can use to set the initial date or to set the selected date programmatically.
+      * When you want to set the selected date programmatically, remember to always create a new reference(a new Date object).
         Example:
                         
         ```
-        this.yourDateObject = new Date(); /* This will work and date will be updated on the calendar view */
         this.yourDateObject.setDate(5); /* This will NOT work and the view is not going to update correctly */
-                        
+        
         var tmpDate = new Date();
         tmpDate.setDate(5);
-        this.yourDateObject = tmpDate; /* This will work */
+        this.yourDateObject = tmpDate; /* This will work and date will be updated on the calendar view */
         ```
 
