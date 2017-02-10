@@ -40,7 +40,9 @@
                 Sáb
             </ion-col>
         </ion-row>
+    </ion-grid>
 
+    <ion-grid (swipeleft)="nextMonth()" (swiperight)="previousMonth()">
         <ion-row *ngFor="let row of rows" class="calendar-row">
             <ion-col *ngFor="let day of row" text-center class="calendar-col">
                 <button no-padding block *ngIf="day" class="calendar-day" ion-button clear (click)="dateClicked(day)" id="calendar-day-{{day}}">
