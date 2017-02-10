@@ -2,9 +2,9 @@
 
 Demo:
 
-  [GIF Demo](https://github.com/alexandretok/simple-fast-ionic2-calendar/raw/master/demo.gif)
+  [GIF Demo](https://github.com/alexandretok/easy-ionic2-calendar/raw/master/demo.gif)
 
-  [Live Demo](https://rawgit.com/alexandretok/simple-fast-ionic2-calendar/master/demo/lab.html)
+  [Live Demo](https://rawgit.com/alexandretok/easy-ionic2-calendar/master/demo/lab.html)
 
 
 Instalattion process:
@@ -41,7 +41,7 @@ Instalattion process:
       * ends: Date object representing the date and time that the events ends.
       * title: String with the title to be shown in the events list.
   * `[useSwipe]="false"`
-    * You can use this to prevent swiping through through the months
+    * You can use this to prevent swiping through the months
   * `[todayText]="Today"`
     * You can use this to translate the today's button content to other languages
   * `[inputDate]="yourDateObject"`
