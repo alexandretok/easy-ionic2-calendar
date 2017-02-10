@@ -10,31 +10,65 @@ export class HomePage {
 
   data: Date = new Date();
 
-  eventos: any = [
-    {
-      starts: new Date(2017, 1, 2, 8, 30),
-      ends: new Date(2017, 1, 2, 12),
-      title: 'Meeting with Gates',
-      description: ''
-    },
-    {
-      starts: new Date(2017, 2, 3, 9, 45),
-      ends: new Date(2017, 2, 3, 12),
-      title: 'Lunch with Zuckerberg',
-      description: ''
-    }
+  eventos: any = [];
+
+  names: string[] = [
+      'Bill Gates',
+      'Mark Zuckerber',
+      'Mark Cuban',
+      'Barack Obama',
+      'Donald Trump',
+      'Putin',
+      'your mamma',
+      'myself',
+      'my girl',
+      'Hillary Clinton',
+      'Eric Schimdt',
+      'Anderson Silva',
+      'Marcus Lemonis',
+      'Kevin O`leary',
+      'nobody',
+      'that person',
+      'Harry Potter',
+      'Vin Diesel',
+      'Forrest Gump',
+      'Benedict Cucumberbatchy',
+      'Iron Man',
+      'Charlie Sheen',
+      'Elon Musk'
   ];
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+  useSwipe = true;
 
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {}
+
+  fakeEvents(){
+    let tmp = [];
+    for(let i=0; i < 100; i++) {
+      let starts = new Date(this.rand(1483228800000, 1514764800000));
+      let dateStr = ("0" + starts.getHours()).slice(-2) + ":" + ("0" + starts.getMinutes()).slice(-2);
+      tmp.push({
+        starts: starts,
+        ends: new Date(starts.getTime() + 60 * 60 * 1000),
+        title: dateStr + ' Lunch with ' + this.names[this.rand(0, this.names.length - 1)],
+        description: ''
+      });
+    }
+
+    this.eventos = tmp;
+  }
+
+  rand(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   onChange(event) {
-    console.log("data selecionada:", event);
+    console.log("date clicked", event);
   }
 
   evento(event){
-    console.log("evento clicado", event);
+    console.log("event clicked", event);
+
     let starts = new Date(event.starts);
     let alert = this.alertCtrl.create({
       title: 'Event clicked!',
