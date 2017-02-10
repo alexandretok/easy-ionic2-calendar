@@ -8,7 +8,7 @@
             </ion-col>
             <ion-col width-50 text-center class="selectedDateLabel">
                 <h5 class="selectedMonthLabel">{{ currentDate | date:'MMMM yyyy' }}</h5>
-                <button (click)="setToday()" ion-button small outline>Today</button>
+                <button (click)="setToday()" ion-button small outline>{{ todayText }}</button>
             </ion-col>
             <ion-col width-25 text-right>
                 <button ion-button icon-only (click)="nextMonth()">
@@ -40,10 +40,13 @@
                 {{ weekDays[6] }}
             </ion-col>
         </ion-row>
+    </ion-grid>
 
+    <ion-grid (swipeleft)="useSwipe && nextMonth()" (swiperight)="useSwipe && previousMonth()">
         <ion-row *ngFor="let row of rows" class="calendar-row">
             <ion-col *ngFor="let day of row" text-center class="calendar-col">
-                <button no-padding block class="calendar-day" ion-button clear (click)="dateClicked(day)" id="calendar-day-{{day}}">
+                <button no-padding block class="calendar-day" *ngIf="day" ion-button clear (click)="dateClicked(day)"
+                        id="calendar-day-{{day}}">
                     {{ day }}
                 </button>
             </ion-col>

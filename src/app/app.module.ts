@@ -20,7 +20,7 @@ import { IonCalendarComponent } from '../components/ion-calendar/ion-calendar';
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: LOCALE_ID, useValue: "en-US"}
+    {provide: LOCALE_ID, useValue: "pt-BR"}
   ],
 })
 export class AppModule {}

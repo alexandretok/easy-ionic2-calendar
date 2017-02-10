@@ -1,32 +1,39 @@
 import { Component, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { DatePipe } from "@angular/common";
 
 @Component({
   selector: 'ion-calendar',
   templateUrl: 'ion-calendar.html',
+  providers: [DatePipe]
 })
 export class IonCalendarComponent {
 
   @Input('inputDate') currentDate: Date = new Date();
   @Input() events: any = [];
+  @Input() useSwipe: boolean = true;
+  @Input() todayText: string = "Today";
 
   @Output() onChange: EventEmitter<Date> = new EventEmitter<Date>();
   @Output() onEventClicked: EventEmitter<any> = new EventEmitter<any>();
 
-  weekDays: string[] = [
-      'Sun',
-      'Mon',
-      'Tue',
-      'Wed',
-      'Thu',
-      'Fri',
-      'Sat'
-  ];
+  weekDays: string[] = [];
 
   rows = [];
   stop = false;
   todayEvents = [];
 
-  constructor() {}
+  constructor(private datePipe: DatePipe) {
+    this.setUpWeekDaysLabels();
+  }
+
+  setUpWeekDaysLabels() {
+    let date = new Date(2017, 0, 1); /* This date has to be a Sunday */
+    for(let i=0; i < 7; i++, date.setDate(date.getDate() + 1)) {
+      let str: string = this.datePipe.transform(date, "EEE");
+      str = str[0].toUpperCase() + str.slice(1);
+      this.weekDays.push(str);
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     /* If the currentDate was changed outside (in the parent component), we need to call this.calc() */
