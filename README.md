@@ -41,7 +41,7 @@ Instalattion process:
       * ends: Date object representing the date and time that the events ends.
       * title: String with the title to be shown in the events list.
   * `[useSwipe]="false"`
-    * You can use this to prevent swiping through through the months
+    * You can use this to prevent swiping through the months
   * `[todayText]="Today"`
     * You can use this to translate the today's button content to other languages
   * `[inputDate]="yourDateObject"`
