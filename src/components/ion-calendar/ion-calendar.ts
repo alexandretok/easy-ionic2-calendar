@@ -6,7 +6,7 @@ import { Component, Input, Output, EventEmitter, SimpleChanges } from '@angular/
 })
 export class IonCalendarComponent {
 
-  @Input() currentDate: Date = new Date();
+  @Input('inputDate') currentDate: Date = new Date();
   @Input() events: any = [];
 
   @Output() onChange: EventEmitter<Date> = new EventEmitter<Date>();
