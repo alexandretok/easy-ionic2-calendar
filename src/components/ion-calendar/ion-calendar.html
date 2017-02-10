@@ -54,7 +54,7 @@
     </ion-grid>
 
     <ion-list>
-        <button ion-item *ngFor="let event of todayEvents" (click)="eventClicked(event)">
+        <button text-wrap ion-item *ngFor="let event of todayEvents" (click)="eventClicked(event)">
             {{ event.title }}
             <ion-icon name="arrow-forward" hideWhen="ios" item-right></ion-icon>
         </button>
