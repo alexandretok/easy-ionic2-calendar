@@ -2,9 +2,9 @@
 
 Demo:
 
-  [GIF Demo](https://github.com/alexandretok/simple-fast-ionic2-calendar/raw/master/demo.gif)
+  [GIF Demo](https://github.com/alexandretok/easy-ionic2-calendar/raw/master/demo.gif)
 
-  [Live Demo](https://rawgit.com/alexandretok/simple-fast-ionic2-calendar/master/demo/lab.html)
+  [Live Demo](https://rawgit.com/alexandretok/easy-ionic2-calendar/master/demo/lab.html)
 
 
 Instalattion process:
