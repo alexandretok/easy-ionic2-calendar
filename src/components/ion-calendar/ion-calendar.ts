@@ -49,7 +49,8 @@ export class IonCalendarComponent {
       let n: number = listToRemoveClasses.length;
 
       for(let i=0; i < n; i++)
-        listToRemoveClasses[0].classList.remove("hasEvents"); /* Using index zero because the object is updated after we remove an item */
+        if(listToRemoveClasses[0])
+          listToRemoveClasses[0].classList.remove("hasEvents"); /* Using index zero because the object is updated after we remove an item */
 
       this.setHasEventsClass();
       this.showTodayEvents();
@@ -82,7 +83,8 @@ export class IonCalendarComponent {
     if(this.events)
       this.events.forEach((item, index) => {
         if(item.starts.getTime() >= firstDayOfTheMonth.getTime() && item.ends.getTime() < lastDayOfTheMonth.getTime()) {
-          document.getElementById("calendar-day-" + item.starts.getDate()).classList.add('hasEvents');
+          if(document.getElementById("calendar-day-" + item.starts.getDate()))
+            document.getElementById("calendar-day-" + item.starts.getDate()).classList.add('hasEvents');
         }
       });
   }
