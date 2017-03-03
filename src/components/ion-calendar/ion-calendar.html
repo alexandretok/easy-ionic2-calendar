@@ -2,16 +2,16 @@
     <ion-grid>
         <ion-row class="calendar-controls">
             <ion-col width-25 text-left>
-                <button ion-button icon-only (click)="previousMonth()">
+                <button ion-button icon-only outline (click)="previousMonth()">
                     <ion-icon name="arrow-back"></ion-icon>
                 </button>
             </ion-col>
             <ion-col width-50 text-center class="selectedDateLabel">
                 <h5 class="selectedMonthLabel">{{ currentDate | date:'MMMM yyyy' }}</h5>
-                <button (click)="setToday()" ion-button small outline>{{ todayText }}</button>
+                <button *ngIf="showTodayButton" (click)="setToday()" ion-button small outline>{{ todayText }}</button>
             </ion-col>
             <ion-col width-25 text-right>
-                <button ion-button icon-only (click)="nextMonth()">
+                <button ion-button icon-only outline (click)="nextMonth()">
                     <ion-icon name="arrow-forward"></ion-icon>
                 </button>
             </ion-col>

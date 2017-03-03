@@ -6,11 +6,12 @@ import { DatePipe } from "@angular/common";
   templateUrl: 'ion-calendar.html',
   providers: [DatePipe]
 })
-export class IonCalendarComponent {
+export class IonCalendar {
 
   @Input('inputDate') currentDate: Date = new Date();
   @Input() events: any = [];
   @Input() useSwipe: boolean = true;
+  @Input() showTodayButton: boolean = true;
   @Input() todayText: string = "Today";
 
   @Output() onChange: EventEmitter<Date> = new EventEmitter<Date>();
