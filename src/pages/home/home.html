@@ -12,8 +12,10 @@
             [events]="eventos"
             (onEventClicked)="evento($event)"
             [useSwipe]="useSwipe"
+            [showEventsList]="true"
+            [disablePastDates]="true"
+            [weekDaysToDisable]="weekdays"
             [inputDate]="data">
-
     </ion-calendar>
 
     <ion-row>

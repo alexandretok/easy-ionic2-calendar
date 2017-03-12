@@ -44,9 +44,9 @@
 
     <ion-grid (swipeleft)="useSwipe && nextMonth()" (swiperight)="useSwipe && previousMonth()">
         <ion-row *ngFor="let row of rows" class="calendar-row">
-            <ion-col *ngFor="let day of row" text-center class="calendar-col">
+            <ion-col *ngFor="let day of row; let i = index" text-center class="calendar-col">
                 <button no-padding block class="calendar-day" *ngIf="day" ion-button clear (click)="dateClicked(day)"
-                        id="calendar-day-{{day}}">
+                        id="calendar-day-{{day}}" [disabled]="pastDates.indexOf(day) > -1 || weekDaysToDisable.indexOf(i) > -1 || daysToDisable.indexOf(day) > -1">
                     {{ day }}
                 </button>
             </ion-col>
