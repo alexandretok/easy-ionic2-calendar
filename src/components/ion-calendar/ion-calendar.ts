@@ -11,6 +11,7 @@ export class IonCalendar {
   @Input('inputDate') currentDate: Date = new Date();
   @Input() events: any = [];
   @Input() useSwipe: boolean = true;
+  @Input() showEventsList: boolean = true;
   @Input() showTodayButton: boolean = true;
   @Input() todayText: string = "Today";
 
