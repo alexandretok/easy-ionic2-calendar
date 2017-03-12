@@ -9,7 +9,7 @@ import { NavController, AlertController } from 'ionic-angular';
 export class HomePage {
 
   data: Date = new Date();
-	weekdays = [0,6];
+	weekdays = [];
 
   eventos: any = [];
 
@@ -45,7 +45,7 @@ export class HomePage {
   	setTimeout(() => {
   		console.log("disabling mondays...");
   		this.weekdays.push(1);
-	  }, 1500);
+	  }, 2500);
   }
 
   fakeEvents(){
