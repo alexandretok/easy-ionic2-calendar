@@ -2,16 +2,16 @@
     <ion-grid>
         <ion-row class="calendar-controls">
             <ion-col width-25 text-left>
-                <button ion-button icon-only (click)="previousMonth()">
+                <button ion-button icon-only clear (click)="previousMonth()">
                     <ion-icon name="arrow-back"></ion-icon>
                 </button>
             </ion-col>
             <ion-col width-50 text-center class="selectedDateLabel">
                 <h5 class="selectedMonthLabel">{{ currentDate | date:'MMMM yyyy' }}</h5>
-                <button (click)="setToday()" ion-button small outline>{{ todayText }}</button>
+                <button *ngIf="showTodayButton" (click)="setToday()" ion-button small outline>{{ todayText }}</button>
             </ion-col>
             <ion-col width-25 text-right>
-                <button ion-button icon-only (click)="nextMonth()">
+                <button ion-button icon-only clear (click)="nextMonth()">
                     <ion-icon name="arrow-forward"></ion-icon>
                 </button>
             </ion-col>
@@ -44,16 +44,16 @@
 
     <ion-grid (swipeleft)="useSwipe && nextMonth()" (swiperight)="useSwipe && previousMonth()">
         <ion-row *ngFor="let row of rows" class="calendar-row">
-            <ion-col *ngFor="let day of row" text-center class="calendar-col">
+            <ion-col *ngFor="let day of row; let i = index" text-center class="calendar-col">
                 <button no-padding block class="calendar-day" *ngIf="day" ion-button clear (click)="dateClicked(day)"
-                        id="calendar-day-{{day}}">
+                        id="calendar-day-{{day}}" [disabled]="pastDates.indexOf(day) > -1 || weekDaysToDisable.indexOf(i) > -1 || daysToDisable.indexOf(day) > -1">
                     {{ day }}
                 </button>
             </ion-col>
         </ion-row>
     </ion-grid>
 
-    <ion-list>
+    <ion-list *ngIf="showEventsList">
         <button text-wrap ion-item *ngFor="let event of todayEvents" (click)="eventClicked(event)">
             {{ event.title }}
             <ion-icon name="arrow-forward" hideWhen="ios" item-right></ion-icon>

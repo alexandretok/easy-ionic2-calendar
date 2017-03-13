@@ -6,17 +6,23 @@ import { DatePipe } from "@angular/common";
   templateUrl: 'ion-calendar.html',
   providers: [DatePipe]
 })
-export class IonCalendarComponent {
+export class IonCalendar {
 
   @Input('inputDate') currentDate: Date = new Date();
   @Input() events: any = [];
+  @Input() disablePastDates: boolean = false;
+  @Input() weekDaysToDisable: number[] = [];
+  @Input() daysToDisable: number[] = [];
   @Input() useSwipe: boolean = true;
+  @Input() showEventsList: boolean = true;
+  @Input() showTodayButton: boolean = true;
   @Input() todayText: string = "Today";
 
   @Output() onChange: EventEmitter<Date> = new EventEmitter<Date>();
   @Output() onEventClicked: EventEmitter<any> = new EventEmitter<any>();
 
   weekDays: string[] = [];
+  pastDates: number[] = [];
 
   rows = [];
   stop = false;
@@ -151,7 +157,33 @@ export class IonCalendarComponent {
       /* Needs to be executed only after the DOM has been updated */
       this.setHasEventsClass();
       this.setTodayClass();
+      this.disableDates();
     });
+  }
+
+  disableDates(){
+    // Disabling past dates
+  	if(this.disablePastDates){
+		  this.pastDates = [];
+		  let today = new Date();
+		  // Checks if the current month is being shown
+		  if (today.getFullYear() == this.currentDate.getFullYear() && today.getMonth() == this.currentDate.getMonth()) {
+		  	// If current month is being shown, disable only the past days
+			  for(let i = 1; i < today.getDate(); i++){
+				  this.pastDates.push(i);
+			  }
+		  } else if(this.currentDate.getTime() < today.getTime()){
+		  	// If a previous month is being show (disable all days)
+			  for(let i = 1; i <= 31; i++){
+				  this.pastDates.push(i);
+			  }
+		  }
+	  }
+
+	  // Disable chosen week days
+	  if(this.weekDaysToDisable.length){
+
+	  }
   }
 
   /**
