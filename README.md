@@ -58,9 +58,9 @@ Read about the options below.
     * title: String with the title to be shown in the events list.
 * `[showEventsList]="true"`
   * Wheter or not to show the events list on the bottom of the calendar
-* [disablePastDates]="false"
+* `[disablePastDates]="false"`
   * Wheter or not to show past dates as disabled (disables user click on those dates)
-* [weekDaysToDisable]="[0,6]"
+* `[weekDaysToDisable]="[0,6]"`
   * You can use this to disable certain weekdays, in this example we are disabling Sundays (0) and Saturdays (6). Users will not be able to click these days.
 * `[useSwipe]="false"`
   * You can use this to prevent swiping through the months
