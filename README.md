@@ -13,6 +13,9 @@ Place the following in the desired page:
             (onEventClicked)="eventClicked($event)"
             [useSwipe]="true"
             [todayText]="Today"
+            [showEventsList]="true"
+            [disablePastDates]="false"
+            [weekDaysToDisable]="[0,6]"
             [inputDate]="myDate">
     </ion-calendar>
     
@@ -53,6 +56,12 @@ Read about the options below.
     * starts: Date object representing the date and time that the events starts.
     * ends: Date object representing the date and time that the events ends.
     * title: String with the title to be shown in the events list.
+* `[showEventsList]="true"`
+  * Wheter or not to show the events list on the bottom of the calendar
+* [disablePastDates]="false"
+  * Wheter or not to show past dates as disabled (disables user click on those dates)
+* [weekDaysToDisable]="[0,6]"
+  * You can use this to disable certain weekdays, in this example we are disabling Sundays (0) and Saturdays (6). Users will not be able to click these days.
 * `[useSwipe]="false"`
   * You can use this to prevent swiping through the months
 * `[todayText]="Today"`
