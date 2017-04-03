@@ -16,13 +16,14 @@ Place the following in the desired page:
             [showEventsList]="true"
             [disablePastDates]="false"
             [weekDaysToDisable]="[0,6]"
+            [daysToDisable]="[10,11,12]"
             [inputDate]="myDate">
     </ion-calendar>
     
 Read about the options below.
 
 
-#### Instalattion process:
+#### Installation process:
 
 * Clone the project and copy the ion-calendar folder to your project's components folder (src/components).
 * Import the component on your `app.module.ts`:
@@ -62,6 +63,8 @@ Read about the options below.
   * Wheter or not to show past dates as disabled (disables user click on those dates)
 * `[weekDaysToDisable]="[0,6]"`
   * You can use this to disable certain weekdays, in this example we are disabling Sundays (0) and Saturdays (6). Users will not be able to click these days.
+* `[daysToDisable]="[10,11,12]"`
+  * You can use this to disable certain days of the month. In this example, days 10, 11 and 12 of the current month will be disabled.
 * `[useSwipe]="false"`
   * You can use this to prevent swiping through the months
 * `[todayText]="Today"`
