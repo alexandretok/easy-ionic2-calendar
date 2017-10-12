@@ -1,4 +1,4 @@
-### An easy calendar for your Ionic 2 App
+### An easy calendar for your Ionic 2 App (also works with Ionic 3)
 
 Demo:
 
